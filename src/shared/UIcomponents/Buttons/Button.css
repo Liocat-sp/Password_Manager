@@ -1,0 +1,31 @@
+.button {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 75%;
+    padding: 0.6rem 0;
+    border-radius: 5px;
+    border: 1px solid rgb(45, 45, 45);
+    outline: none;
+    color: #fff;
+    background-color: rgb(45, 45, 45);
+    margin-bottom: 1.5rem;
+    transition: background-color 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.button:hover {
+    background-color: rgb(28 28 28)
+}
+.button.border {
+    background-color: transparent;
+    color: #000;
+}
+.button.border:hover {
+    color: #fff;
+    background-color: rgb(45, 45, 45);
+}
+.button:disabled {
+    border: 1px solid rgb(104 104 104);
+    background-color: rgb(104 104 104);
+    cursor: default;
+}

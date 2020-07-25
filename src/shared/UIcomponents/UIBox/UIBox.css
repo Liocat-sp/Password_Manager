@@ -1,0 +1,33 @@
+.ACC_Box {
+    display: flex;
+    width: 19rem;
+    height: 5.5rem;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    margin: 1.2rem;
+    transition: transform 300ms cubic-bezier(0.645, 0.045, 0.355, 1),box-shadow 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ACC_Box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px #e2e2e2bd;
+}
+.ACC_Logo {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+}
+.ACC_Logo img{
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    object-fit: fill;
+}
+.ACC_Content {
+    height: 100%;
+    font-size: 1rem;
+}
+.ACC_Content h3{
+    margin-bottom: 0.5rem;
+}

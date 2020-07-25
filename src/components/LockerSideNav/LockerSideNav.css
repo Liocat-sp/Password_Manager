@@ -1,0 +1,31 @@
+.Side-Nav {
+    height: 89.9vh;
+    width: 15%;
+    background-color: rgb(37, 38, 43);
+    color: #fff;
+}
+.Side-Nav h3 {
+    margin: 1.5rem 0.6rem;
+}
+.Side-Nav ul {
+    list-style: none;
+    color: #fff;
+    width: 100%;
+}
+.Side-Nav li {
+    width: 100%;
+}
+.Side-Nav li a{
+    display: inline-block;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    padding: 0.6rem;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.side-Link.active {
+    background-color: #000;
+    border-top: 1px solid #3b3b3b;
+    border-bottom: 1px solid #3b3b3b;
+}

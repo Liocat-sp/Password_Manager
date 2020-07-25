@@ -25,7 +25,7 @@ function Button(props) {
         return (
             <button
             disabled={props.disabled}
-                className={`button ${props.default && 'default'} ${props.border && 'border'}`}
+                className={`button ${props.default && 'default'} ${props.border && 'border'} ${props.half && 'Half'}`}
                 onClick={props.onClick}>
                 {props.children}
             </button>);

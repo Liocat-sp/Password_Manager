@@ -57,6 +57,7 @@ function SidnUp() {
                     element="input"
                     type="password"
                     label="Password"
+                    see
                     validators={[VALIDATION_MINLENGTH(8)]}
                     onInput={onInputChange}
                     placeholder="Your Password"

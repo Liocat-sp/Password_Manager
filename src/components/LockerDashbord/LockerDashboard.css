@@ -1,0 +1,24 @@
+.Locker-App {
+    width: 80%;
+    margin: 0 auto;
+}
+.Locker-App__Main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.Locker-App__Top {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1rem auto;
+}
+.Locker-App__Top svg {
+    fill: #fff;
+    margin-right: 5px;
+}
+.svgBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

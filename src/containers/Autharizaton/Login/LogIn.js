@@ -49,6 +49,7 @@ const LogIn = props => {
                     validators={[VALIDATION_MINLENGTH(8)]}
                     autocomplete="current-password"
                     placeholder="Your Password"
+                    see
                     errorText="Please enter correct password" />
             </form>
             <div className="Auth-Login__Button">

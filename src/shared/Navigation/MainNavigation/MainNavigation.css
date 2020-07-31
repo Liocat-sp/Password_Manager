@@ -13,7 +13,7 @@
     width: 30%;
 }
 .menue {
-    z-index: 50;
+    z-index: 5;
     display: none;
     width: 40px;
     cursor: pointer;

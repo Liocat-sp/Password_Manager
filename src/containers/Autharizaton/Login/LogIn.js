@@ -35,6 +35,7 @@ const LogIn = props => {
             password: state.inputs.password.value
         }
         try {
+            console.log(process.env.REACT_APP_BACKEND);
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
                 method: "POST",
                 body: JSON.stringify(inputs),

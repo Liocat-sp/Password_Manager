@@ -1,6 +1,7 @@
 {
   "name": "password-manager",
   "version": "0.1.0",
+  "repository": "https://github.com/Liocat-sp/password-manager-backend.git",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

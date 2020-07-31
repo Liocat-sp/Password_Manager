@@ -7,3 +7,13 @@
     width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', sans-serif !important;
 }
+.Auth-Login__Button button {
+    width: 75% !important;
+}
+@media (max-width: 900px) {
+    .Auth-Login__Button button {
+        width: 100% !important;
+    }    
+}
+
+

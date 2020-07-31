@@ -5,13 +5,10 @@ const reducer = (state, action) => {
         case 'INPUTCHANGE':
             let formisValid = true;
             for(const inputId in state.inputs) {
-                console.log("loop", inputId);
                 if (!inputId) {
                     continue;
                 }
                 if (inputId === action.id) {
-                    console.log(formisValid + " " + action.isValid);
-                    console.log(formisValid && action.isValid);
                     formisValid = formisValid && action.isValid ;
                 }
                 else {
@@ -41,7 +38,6 @@ export const useFormHook = (initialState, isinitialValid) => {
     const [state, dispatch] = useReducer(reducer, { inputs: initialState, isValid: isinitialValid });
 
     const onInputChange = useCallback((id, value, isValid) => {
-        console.log(id, value, isValid);
         dispatch({ id: id, type: 'INPUTCHANGE', value: value, isValid: isValid })
     }, []);
 

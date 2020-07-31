@@ -1,4 +1,5 @@
 .Side-Nav {
+    position: relative;
     height: 89.9vh;
     width: 15%;
     background-color: rgb(37, 38, 43);
@@ -15,6 +16,10 @@
 .Side-Nav li {
     width: 100%;
 }
+li svg {
+    fill: #fff;
+    margin-right: 10px;
+}
 .Side-Nav li a{
     display: inline-block;
     color: #fff;
@@ -24,8 +29,59 @@
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
 }
+.Side-Nav li div {
+    display: flex;
+    align-items: center;
+}
+
 .side-Link.active {
     background-color: #000;
     border-top: 1px solid #3b3b3b;
     border-bottom: 1px solid #3b3b3b;
+}
+
+@media (max-width: 1050px) {
+    .Side-Nav {
+        width: 20%;
+    }
+}
+@media (max-width: 700px) {
+    .Side-Nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: fit-content;
+    }
+    .Side-Nav h3 {
+        display: none;
+    }
+    .Side-Nav ul {
+        display: flex;
+    }
+    .Side-Nav a {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+}
+
+.DashFooter {
+    margin: 0 auto;
+    font-size: 0.8rem;
+    position: absolute;
+    padding: 0.8rem;
+    bottom: 0;
+}
+.DashFooter a {
+    text-align: center;
+    color: #fff;
+}
+@media (max-width: 700px) {
+    .DashFooter {
+        display: none;
+    }
+}
+@media (max-width: 350px) {
+    .Side-Nav a {
+        font-size: 0.7rem;
+    }
 }

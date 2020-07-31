@@ -1,6 +1,6 @@
 .Modal_ACC {
     z-index: 10;
-    width: 35%;
+    width: 550px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -30,11 +30,32 @@
     width: 100%;
     margin: 0;
 }
-.Modal_Acc_Button{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.Modal_Acc_Button button{
+    margin-right: 1rem !important;
 }
 .icon {
     margin: 0 !important;
 }
+
+
+@media (max-width: 650px) {
+    .Modal_ACC {
+        width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    .Modal_ACC {
+        width: 290px;
+    }
+    .Modal_Acc_divs {
+        flex-direction: column;
+    }
+    .Modal_Acc_Button {
+        display: flex;
+        justify-content: space-around;
+    }
+    .Modal_Acc_Button button {
+        margin-right: 0 !important;
+    }
+} 

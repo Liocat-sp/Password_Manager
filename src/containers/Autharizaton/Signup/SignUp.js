@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Auth from '../Auth/Auth';
 import Input from '../../../shared/UIcomponents/Input/Input';
 import { useFormHook } from '../../../shared/hooks/form-hooks';
 import { VALIDATION_REQUIRE, VALIDATION_EMAIL, VALIDATION_MINLENGTH } from '../../../shared/util/Validation';
 import Button from '../../../shared/UIcomponents/Buttons/Button';
 import './SignUp.css';
+import { useHistory } from 'react-router-dom';
+import BackDrop from '../../../shared/UIcomponents/Backdrop/BackDrop';
+import ModalEtc from '../../../shared/UIcomponents/Models/Modal_etc/Modal_etc';
 
 function SidnUp() {
+    const [error, setError] = useState(null);
+    const history = useHistory();
     const { state, onInputChange } = useFormHook(
         {
             name: {
@@ -25,11 +30,38 @@ function SidnUp() {
         false
     );
 
-    const onSubmitHandler = (e) => { 
+    const onSubmitHandler = async (e) => { 
         e.preventDefault();
         console.log(state.inputs);
+        try{
+            const res = await fetch("http://localhost:5000/user/signup",{
+                method: "POST",
+                body: JSON.stringify({name: state.inputs.name.value, email: state.inputs.email.value, password: state.inputs.password.value}),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const resData = await res.json()
+            if(!res.ok)
+            {
+                throw new Error(resData.message);
+            }
+            history.replace('/auth/login');
+        }
+        catch(error){
+            setError(error.message);
+            console.log(error);
+        }
+    }
+    const onErrorClosed = () => {
+        setError(null);
     }
     return (
+        <React.Fragment>
+        {error && <React.Fragment>
+            <BackDrop onClose={onErrorClosed}/>
+            <ModalEtc title="Error Occured" message={error} onClose={onErrorClosed}/>
+            </React.Fragment>}
         <Auth>
             <h1 className="Auth-Login__pg">Signup</h1>
             <form className="Auth-Signup">
@@ -68,8 +100,8 @@ function SidnUp() {
                 <Button disabled={!state.isValid} onClick={onSubmitHandler}>Signup</Button>
                 <Button to="/auth/login" border>Have An Account</Button>
             </div>
-
         </Auth>
+        </React.Fragment>
     )
 ;}
 

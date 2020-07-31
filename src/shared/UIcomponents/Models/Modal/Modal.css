@@ -7,9 +7,20 @@
     transform: translate(-50%,-50%);
     background-color: #fff;
     border: 1px solid rgb(71, 71, 71);
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     border-radius: 5px;
 }
+/* .SearchField {
+    position: relative;
+}
+.dropDown {
+    position: absolute;
+    bottom: -33px;
+    background-color: #fff;
+    border: 1px solid rgb(59,59,59);
+    border-top: none;
+    width: 100%;
+} */
 .Modal_title {
     margin-bottom: 1rem;
 }
@@ -35,3 +46,28 @@
     display: flex;
     justify-content: space-between;
 }
+.Modal_form .Normal_input {
+    width: 100%;
+    padding: 0.3rem;
+}
+
+@media (max-width: 900px) {
+    .Modal{
+        width: 45%;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 700px) {
+   .Modal {
+       width: 60%;
+       padding: 1rem 1.5rem;
+   }
+}
+@media (max-width: 500px) {
+    .Modal {
+        width: 90%;
+        padding: 1rem 1.5rem;
+    }
+ }
+ 

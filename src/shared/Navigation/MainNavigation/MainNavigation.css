@@ -12,9 +12,55 @@
 .main-navigation__links {
     width: 30%;
 }
+.menue {
+    z-index: 50;
+    display: none;
+    width: 40px;
+    cursor: pointer;
+}
+.hamburger {
+    width: 40px;
+    position: relative;
+}
+.hamburger, .hamburger::before, .hamburger::after {
+    height: 4px;
+    background-color: rgb(29, 29, 29);
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.50,-0.05,0.60,0.53);
+    border-radius: 1.5px;
+}
+
+.hamburger::before, .hamburger::after{ 
+    content: "";
+    width: 20px;
+    position: absolute;
+}
+.hamburger::before{
+    transform: translateY(-10px);
+    transform-origin: right;
+}
+.hamburger::after {
+    transform: translateY(10px);
+    right: 0;
+    transform-origin: left;
+}
+
+.hamburger.active::before{
+    transform: translate(0) rotate(450deg);
+} 
+.hamburger.active::after{
+    transform: translate(0) rotate(450deg);
+} 
+.hamburger.active {
+    transform: translate(0) rotate(45deg) ;
+}
+
 
 @media (max-width: 700px) {
     .main-navigation__links {
         display: none;
+    }
+    .menue {
+        display: flex;
     }
 }

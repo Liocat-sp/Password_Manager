@@ -35,6 +35,9 @@
     border: 1px solid rgb(59,59,59);
     border-radius: 5px;
 }
+.Input__error {
+    color: #fa4d4d;
+}
 .InputEle svg:hover,
 .Input__div svg:hover {
     fill: rgb(71, 71, 71);
@@ -49,14 +52,10 @@
     margin-bottom: 1.1rem;
 }
 
-@media (max-width: 900px) {
-    .Input__div input {
-        width:  90%;
-    }
-}
 
-@media (max-width: 700px) {
-    .Input__div input {
+
+@media (max-width: 900px) {
+    .Normal_input {
         width: 100%;
     }
 }

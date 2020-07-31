@@ -3,3 +3,12 @@
     margin-bottom: 1.5rem;
     margin-top: 1rem;
 }
+.Auth-signup-button button {
+    width: 75% !important;
+}
+@media (max-width: 900px) {
+    .Auth-signup-button button {
+        width: 100% !important;
+    }    
+}
+

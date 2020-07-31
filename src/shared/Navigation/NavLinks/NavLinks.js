@@ -1,19 +1,30 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { NavLink, useHistory } from 'react-router-dom';
 import './NavLinks.css'
+import { AuthContext } from '../../context/auth-context';
 
-const NavLinks = () => {
+const NavLinks = (props) => {
+    const {isLoggedIn, logOut} = useContext(AuthContext);
+    const history = useHistory();
+
+    const logout = () => {
+        logOut();
+        history.push('/');
+    }
+
     return (
         <ul className="nav-links">
             <li>
-                <NavLink exact to="/">Home</NavLink>
+                <NavLink exact to="/" onClick={() => {props.onClose && props.onClose.click()}} >Home</NavLink>
             </li>
             <li>
-                <NavLink to={`/locker/accounts`} isActive={(match,location) => location.pathname.includes('locker')}>Locker</NavLink>
+                <NavLink to={`/locker/accounts`} onClick={() => {props.onClose && props.onClose.click()}} isActive={(match,location) => location.pathname.includes('locker')}>Locker</NavLink>
             </li>
-            <li>
-                <NavLink to="/auth/login">LogIn</NavLink>
-            </li>
+            {!isLoggedIn && <li>
+                <NavLink to="/auth/login" onClick={() => {props.onClose && props.onClose.click()}} isActive={(match,location) => location.pathname.includes('login') || location.pathname.includes('signup') }>LogIn</NavLink>
+            </li>}
+            {isLoggedIn && <li>
+                <p onClick={logout}>Logout</p></li>}
         </ul>
     )
 };

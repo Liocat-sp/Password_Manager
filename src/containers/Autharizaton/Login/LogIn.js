@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Input from '../../../shared/UIcomponents/Input/Input';
 import Auth from '../Auth/Auth';
 import './LogIn.css';
 import { useFormHook } from '../../../shared/hooks/form-hooks';
 import Button from '../../../shared/UIcomponents/Buttons/Button';
 import { VALIDATION_EMAIL, VALIDATION_MINLENGTH } from '../../../shared/util/Validation';
+import { AuthContext } from '../../../shared/context/auth-context';
+import { useHistory } from 'react-router-dom';
+import BackDrop from '../../../shared/UIcomponents/Backdrop/BackDrop';
+import ModalEtc from '../../../shared/UIcomponents/Models/Modal_etc/Modal_etc';
 
 const LogIn = props => {
-    const {state, onInputChange} = useFormHook(
+    const [error, setError] = useState(null);
+    const { login } = useContext(AuthContext);
+    const history = useHistory();
+    const { state, onInputChange } = useFormHook(
         {
             email: {
                 value: '',
@@ -20,14 +27,45 @@ const LogIn = props => {
         },
         false
     );
-    
-    const onSubmitHandler = (e) => {
+
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log(state.inputs);
+        const inputs = {
+            email: state.inputs.email.value,
+            password: state.inputs.password.value
+        }
+        try {
+            const res = await fetch("http://localhost:5000/user/login", {
+                method: "POST",
+                body: JSON.stringify(inputs),
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+            const resData = await res.json();
+            if (!res.ok) {
+                throw new Error(resData.message);
+            }
+            login(resData.user.id, resData.token);
+            history.replace('/locker/accounts');
+
+        }
+        catch (err) {
+            setError(err.message);
+            console.log(err);
+        }
+    }
+
+    const onErrorClose = () => {
+        setError(null);
     }
 
     return (
         <Auth>
+            {error && <React.Fragment>
+                <BackDrop onClose={onErrorClose} />
+                <ModalEtc title="Error Occured" message={error} onClose={onErrorClose} />
+            </React.Fragment>}
             <h1 className="Auth-Login__pg">Login</h1>
             <form className="Auth-Login">
                 <Input

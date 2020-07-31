@@ -24,6 +24,7 @@ function Input(props) {
     const [state, dispatch] = useReducer(reducer, { value: props.value || '', isValid: props.isValid || false, isTouched: props.isTouched || false });
     const [notSee, setNotSee] = useState(false);
     const [type, setType] = useState(props.type);
+    
     const onChangeHandler = (event) => {
         let val = event.target.value;
         if (props.id === 'email' || props.id === 'password')
@@ -51,12 +52,12 @@ function Input(props) {
         document.execCommand("copy");
     }, [props.id])
 
-    const { id, onInput } = props;
+    const { id, onInput} = props;
 
     useEffect(() => {
         onInput(id, state.value, state.isValid);
     }
-        , [id, state.value, state.isValid, onInput]);
+    , [id, state.value, state.isValid, onInput]);
 
     const Element = props.element === 'input' ?
         <input

@@ -5,7 +5,14 @@
     display: flex;
     justify-content: space-between;
 }
-.nav-links li a{
+.nav-links li button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.nav-links li a,
+.nav-links li p{
+    cursor: pointer;
     position: relative;
     padding-bottom: 5px;
     font-size: 1rem;
@@ -13,7 +20,8 @@
     text-decoration: none;
     color: rgb(26, 26, 26);
 }
-.nav-links li a::after {
+.nav-links li a::after,
+.nav-links li p::after {
     content: '';
     width: 105%;
     height: 2px;
@@ -29,6 +37,28 @@
 
 .nav-links a:hover::after,
 .nav-links a.active::after,
-.nav-links a:active  {
+.nav-links a:active,
+.nav-links p:hover::after,
+.nav-links p:active::after  {
     transform: scale(1);
+}
+
+@media (max-width: 700px) {
+    .nav-links {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+    .nav-links li a,
+    .nav-links li p {
+        font-size: 1.5rem;
+    }
 }

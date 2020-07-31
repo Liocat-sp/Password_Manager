@@ -12,6 +12,12 @@
 .Auth__hero {
     width: 100%;
 }
+.Auth__hero svg{
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 100%;
+}
 .Auth__form {
     height: 100%;
     width: 80%;

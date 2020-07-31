@@ -1,75 +1,69 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import UIBox from '../../shared/UIcomponents/UIBox/UIBox'
 import './LockerDashboard.css';
 import Button from '../../shared/UIcomponents/Buttons/Button';
-import ModalBox from '../../shared/UIcomponents/Modal/Modal';
+import ModalBox from '../../shared/UIcomponents/Models/Modal/Modal';
 import BackDrop from '../../shared/UIcomponents/Backdrop/BackDrop';
 import { ReactComponent as AddIcon } from '../../images/icons/add.svg';
-
-const Data = [
-    {
-        id: "a1",
-        website: "Google",
-        websiteIcon: "Link",
-        userEmail: "Saurabh@gmail.com",
-        userName: null,
-        password: "something"
-    },
-    {
-        id: "a2",
-        website: "Facebook",
-        websiteIcon: "Link2",
-        userEmail: "saurabh@facebook.com",
-        userName: "liocat",
-        password: "something"
-    },
-    {
-        id: "a3",
-        website: "Google",
-        websiteIcon: "Link",
-        userEmail: "Saurabh@gmail.com",
-        userName: null,
-        password: "something"
-    },
-    {
-        id: "a4",
-        website: "Facebook",
-        websiteIcon: "Link2",
-        userEmail: "saurabh@facebook.com",
-        userName: "liocat",
-        password: "something"
-    }, {
-        id: "a5",
-        website: "Google",
-        websiteIcon: "Link",
-        userEmail: "Saurabh@gmail.com",
-        userName: null,
-        password: "something"
-    },
-    {
-        id: "a6",
-        website: "Facebook",
-        websiteIcon: "Link2",
-        userEmail: "saurabh@facebook.com",
-        userName: "liocat",
-        password: "something"
-    }
-]
+import { AuthContext } from '../../shared/context/auth-context';
+import ModalEtc from '../../shared/UIcomponents/Models/Modal_etc/Modal_etc';
 
 function LockerDashboard() {
     const [ModelOpen, setModalOpen] = useState();
+    const {isLoggedIn, userId, token} = useContext(AuthContext);
+    const [Accounts, setAccounts] = useState([]);
+    const [ren, setren] = useState(false);
+    const [error, setError]  = useState(null); 
+
     const onModelHandler = () => {
         setModalOpen(true);
     }
     const onModalCloseHandler = () => {
         setModalOpen(false);
     }
+    useEffect(() => {
+        const getdata = async () => {
+            if(isLoggedIn){
+                try{
+                    const res = await fetch(`http://localhost:5000/locker/${userId}`,{ 
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Authorization": "Bearer " + token
+                        }
+                    });
+                    const resData = await res.json();
+                    if(!res.ok){
+                        throw new Error(resData.message);
+                    }
+                    console.log(resData);
+                    setAccounts(resData.accounts);
+                }
+                catch(error) {
+                    setError(error.message);
+                    setAccounts([]);
+                    console.log(error);
+                }
+            }
+        }
+        getdata();
+    }, [isLoggedIn, userId, token, ren]);
+
+    const errorClose = () => {
+        setError(null);
+    }
     return (
         <React.Fragment>
+            {
+                    error && <React.Fragment>
+                    <BackDrop onClose={onModalCloseHandler} />
+                         <ModalEtc title="Error Occured" message={error} onClose={errorClose} />
+                         </React.Fragment>
+            }
             {ModelOpen && (
                 <React.Fragment>
                     <BackDrop onClose={onModalCloseHandler} />
-                    <ModalBox onCancle={onModalCloseHandler} title={"Add Account"} />
+                    <ModalBox onCancle={onModalCloseHandler} onNew={setAccounts} onError={setError} title={"Add Account"} />
                 </React.Fragment>
             )}
             <div className="Locker-App">
@@ -82,16 +76,18 @@ function LockerDashboard() {
                     </Button>
                 </div>
                 <div className="Locker-App__Main">
-                    {Data.map(Acc => {
+                    {Accounts.length > 0 ? Accounts.map(Acc => {
                         return (
                             <UIBox
+                                ren={setren}
                                 key={Acc.id}
                                 id={Acc.id}
                                 website={Acc.website}
-                                Icon={Acc.websiteIcon}
-                                Email={Acc.userEmail} />)
-                    })}
+                                Icon={Acc.logoUrl}
+                                Email={Acc.email} />)
+                    }) : <div>No Accounts Available, Please add one.</div>}
                 </div>
+                <div className="DashF"><a href="https://clearbit.com">Logos provided by Clearbit</a></div>
             </div>
         </React.Fragment>
     )

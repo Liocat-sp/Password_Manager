@@ -52,7 +52,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logOut: logout, userId: userId, token: token }}>
-        <BrowserRouter>
+        <BrowserRouter  basename="/" >
           <MainNavigation />
           <Switch>
             <Route path="/locker/:lockerId">

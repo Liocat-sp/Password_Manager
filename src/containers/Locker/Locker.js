@@ -9,7 +9,6 @@ const CreatePassword = React.lazy(() => import('../../components/CreatePassword/
 
 function Locker() {
     const lockerId = useParams().lockerId;
-    console.log(lockerId);
     return (
         <div className="Locker_Dash">
             <LockerSideNav />

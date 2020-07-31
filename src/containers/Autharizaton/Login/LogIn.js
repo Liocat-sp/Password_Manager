@@ -35,7 +35,7 @@ const LogIn = props => {
             password: state.inputs.password.value
         }
         try {
-            const res = await fetch("http://localhost:5000/user/login", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
                 method: "POST",
                 body: JSON.stringify(inputs),
                 headers: {
@@ -52,7 +52,6 @@ const LogIn = props => {
         }
         catch (err) {
             setError(err.message);
-            console.log(err);
         }
     }
 

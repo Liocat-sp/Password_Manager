@@ -25,7 +25,7 @@ function LockerDashboard() {
         const getdata = async () => {
             if(isLoggedIn){
                 try{
-                    const res = await fetch(`http://localhost:5000/locker/${userId}`,{ 
+                    const res = await fetch(`${process.env.REACT_APP_BACKEND}/locker/${userId}`,{ 
                         method: "GET",
                         headers: {
                             'Content-Type': 'application/json',
@@ -36,13 +36,11 @@ function LockerDashboard() {
                     if(!res.ok){
                         throw new Error(resData.message);
                     }
-                    console.log(resData);
                     setAccounts(resData.accounts);
                 }
                 catch(error) {
                     setError(error.message);
                     setAccounts([]);
-                    console.log(error);
                 }
             }
         }

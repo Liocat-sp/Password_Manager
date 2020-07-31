@@ -10,7 +10,7 @@ function ModalEtc(props) {
     const onOkHendler = async () => {
         if (props.id && isLoggedIn && !err) {
             try {
-                const res = await fetch(`http://localhost:5000/locker/acc/${props.id}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND}/locker/acc/${props.id}`, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + token
@@ -18,16 +18,13 @@ function ModalEtc(props) {
                 });
                 const resData = await res.json();
                 if (!res.ok) {
-                    console.log(resData);
                     throw new Error("Something went wrong. Deletion Failed.");
                 }
                 props.ren(prev => !prev);
             }
             catch (err) {
                 setErr(err.message);
-                console.log(err);
             }
-            console.log("delete " + props.id);
         }
         else {
             if(err) {

@@ -15,7 +15,7 @@ function ModalACC(props) {
         const data = async () => {
             if (isLoggedIn) {
                 try {
-                    const res = await fetch(`http://localhost:5000/locker/acc/${id}`, {
+                    const res = await fetch(`${process.env.REACT_APP_BACKEND}/locker/acc/${id}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": 'application/json',
@@ -26,13 +26,11 @@ function ModalACC(props) {
                     if (!res.ok) {
                         throw new Error(resData.message);
                     }
-                    console.log(resData);
                     setPassword(resData.account.password);
                     setUserName(resData.account.userName);
                 }
                 catch (error) {
                     props.setAlert(prev => { return { ...prev, title: "Error Occured", message: error.message } });
-                    console.log(error);
                 }
             }
         }

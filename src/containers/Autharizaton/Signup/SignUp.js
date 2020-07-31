@@ -32,9 +32,8 @@ function SidnUp() {
 
     const onSubmitHandler = async (e) => { 
         e.preventDefault();
-        console.log(state.inputs);
         try{
-            const res = await fetch("http://localhost:5000/user/signup",{
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/user/signup`,{
                 method: "POST",
                 body: JSON.stringify({name: state.inputs.name.value, email: state.inputs.email.value, password: state.inputs.password.value}),
                 headers: {
@@ -50,7 +49,6 @@ function SidnUp() {
         }
         catch(error){
             setError(error.message);
-            console.log(error);
         }
     }
     const onErrorClosed = () => {

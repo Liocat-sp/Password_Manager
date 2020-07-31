@@ -33,7 +33,6 @@ function Modal(props) {
         const image = state.inputs.website.value;
         try {
             const response = await Axios.get(`https://autocomplete.clearbit.com/v1/companies/suggest?query=:${image}`);
-            console.log(response);
             if(!response){
                 throw new Error("Can not create account.");
             }
@@ -49,7 +48,7 @@ function Modal(props) {
             }
                 if (isLoggedIn) {
                     try {
-                        const res = await fetch("http://localhost:5000/locker/new", {
+                        const res = await fetch(`${process.env.REACT_APP_BACKEND}/locker/new`, {
                             method: "POST",
                             body: JSON.stringify(newAcc),
                             headers: {
@@ -73,7 +72,6 @@ function Modal(props) {
                     catch (error) {
                         props.onError(error.message);
                         props.onCancle();
-                        console.log(error);
                     }
                 }
                 else {
@@ -95,7 +93,6 @@ function Modal(props) {
         catch (err) {
             props.onError(err.message);                        
             props.onCancle();
-            console.log(err);
         }
 
     }

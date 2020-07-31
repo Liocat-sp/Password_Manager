@@ -22,7 +22,6 @@ function App() {
     settoken(token);
     setisLoggedIn(true);
     const expiraton = expire || new Date(new Date().getTime() + 2 * 3600 * 1000);
-    console.log(expiraton);
     setExpireAt(expiraton);
     localStorage.setItem('Data', JSON.stringify({ userId: userId, token: token, expire: expiraton }));
   }, [])

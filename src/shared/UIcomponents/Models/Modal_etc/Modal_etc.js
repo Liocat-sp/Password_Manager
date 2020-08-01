@@ -16,7 +16,6 @@ function ModalEtc(props) {
                         'Authorization': 'Bearer ' + token
                     }
                 });
-                const resData = await res.json();
                 if (!res.ok) {
                     throw new Error("Something went wrong. Deletion Failed.");
                 }

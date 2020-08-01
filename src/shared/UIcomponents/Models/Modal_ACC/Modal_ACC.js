@@ -4,6 +4,7 @@ import Input from '../../Input/Input';
 import Button from '../../Buttons/Button';
 import './Modal_Acc.css';
 import { AuthContext } from '../../../context/auth-context';
+import Loader from '../../Loader/Loader';
 
 function ModalACC(props) {
     const { isLoggedIn, userId, token } = useContext(AuthContext);
@@ -47,7 +48,7 @@ function ModalACC(props) {
         {!isLoggedIn && <div style={{ color: '#fa4d4d', with: "90%", margin: "0 auto" }}>
             All details feature is disabled for trial virsion. Please Login to use app completely
             </div>}
-        {password && <React.Fragment><h2>{website}</h2>
+        {password ? <React.Fragment><h2>{website}</h2>
             <div className="Modal_Acc_content">
                 <div className="Modal_Acc_divs">
                     <h3>Email: </h3>
@@ -96,7 +97,7 @@ function ModalACC(props) {
                 <Button half onClick={props.onClose}>Go Back</Button>
                 <Button half border onClick={onDeleteHandler}>Delete</Button>
             </div>
-        </React.Fragment>}
+        </React.Fragment> : <div className="center"><Loader notOver/></div>}
     </div>);
     return ReactDOM.createPortal(ModalItem, document.getElementById("Modal_Acc"));
 }

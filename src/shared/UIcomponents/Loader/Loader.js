@@ -1,12 +1,12 @@
 import React from 'react';
 import './Loader.css'
 
-function Loader() {
+function Loader(props) {
     return (
-        <div className="Load">
+        <div className={`${props.notOver?'noOver' :'Load' }`}>
         <div className="loader"></div>
         </div>
     )
 }
 
-export default Loader
+export default Loader;

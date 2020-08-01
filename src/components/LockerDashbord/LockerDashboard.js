@@ -7,8 +7,10 @@ import BackDrop from '../../shared/UIcomponents/Backdrop/BackDrop';
 import { ReactComponent as AddIcon } from '../../images/icons/add.svg';
 import { AuthContext } from '../../shared/context/auth-context';
 import ModalEtc from '../../shared/UIcomponents/Models/Modal_etc/Modal_etc';
+import Loader from '../../shared/UIcomponents/Loader/Loader';
 
 function LockerDashboard() {
+    const [isLoading, setIsLoading] = useState(false);
     const [ModelOpen, setModalOpen] = useState();
     const {isLoggedIn, userId, token} = useContext(AuthContext);
     const [Accounts, setAccounts] = useState([]);
@@ -25,6 +27,7 @@ function LockerDashboard() {
         const getdata = async () => {
             if(isLoggedIn){
                 try{
+                    setIsLoading(true);
                     const res = await fetch(`${process.env.REACT_APP_BACKEND}/locker/${userId}`,{ 
                         method: "GET",
                         headers: {
@@ -36,13 +39,15 @@ function LockerDashboard() {
                     if(!res.ok){
                         throw new Error(resData.message);
                     }
+                    setIsLoading(false);
                     setAccounts(resData.accounts);
                 }
                 catch(error) {
+                    setIsLoading(false);
                     setError(error.message);
                     setAccounts([]);
                 }
-            }
+            } 
         }
         getdata();
     }, [isLoggedIn, userId, token, ren]);
@@ -83,7 +88,7 @@ function LockerDashboard() {
                                 website={Acc.website}
                                 Icon={Acc.logoUrl}
                                 Email={Acc.email} />)
-                    }) : <div>No Accounts Available, Please add one.</div>}
+                    }) : !isLoading?<div>No Accounts Available, Please add one.</div>:<Loader notOver/>  }
                 </div>
                 <div className="DashF"><a href="https://clearbit.com">Logos provided by Clearbit</a></div>
             </div>
@@ -91,4 +96,4 @@ function LockerDashboard() {
     )
 }
 
-export default LockerDashboard
+export default LockerDashboard;

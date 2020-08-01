@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../../shared/UIcomponents/Buttons/Button';
 import { ReactComponent as HeroImg } from '../../images/hero image/HeroImg.svg';
 import { ReactComponent as Work } from '../../images/hero image/Work.svg';
@@ -7,9 +7,11 @@ import { ReactComponent as OnePalce } from '../../images/hero image/OnePlace.svg
 import { ReactComponent as Generate} from '../../images/hero image/generate.svg';
 import { ReactComponent as Easy } from '../../images/hero image/easetouse.svg' 
 import './home.css';
+import { AuthContext } from '../../shared/context/auth-context';
 
 
 function Home() {
+    const {isLoggedIn} = useContext(AuthContext);
     return (
         <React.Fragment>
             <section className="section_Hero">
@@ -18,7 +20,7 @@ function Home() {
                         <h1>You Were Not<br />Born to <br />Remember Passwords.</h1>
                         <p>That's why we help you manage your passwords.</p>
                         <div className="hero_buttons">
-                            <Button to="/auth/signup" half>SignUp</Button>
+                            <Button to={isLoggedIn? "/locker/accounts":"/auth/signup"} half>SignUp</Button>
                             <Button to="/locker/accounts" half border>Try now</Button>
                         </div>
                     </div>

@@ -9,8 +9,10 @@ import { AuthContext } from '../../../shared/context/auth-context';
 import { useHistory } from 'react-router-dom';
 import BackDrop from '../../../shared/UIcomponents/Backdrop/BackDrop';
 import ModalEtc from '../../../shared/UIcomponents/Models/Modal_etc/Modal_etc';
+import Loader from '../../../shared/UIcomponents/Loader/Loader';
 
 const LogIn = props => {
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { login } = useContext(AuthContext);
     const history = useHistory();
@@ -35,7 +37,7 @@ const LogIn = props => {
             password: state.inputs.password.value
         }
         try {
-            console.log(process.env.REACT_APP_BACKEND);
+            setIsLoading(true);
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
                 method: "POST",
                 body: JSON.stringify(inputs),
@@ -47,11 +49,13 @@ const LogIn = props => {
             if (!res.ok) {
                 throw new Error(resData.message);
             }
+            setIsLoading(false);
             login(resData.user.id, resData.token);
             history.replace('/locker/accounts');
-
         }
         catch (err) {
+            setIsLoading(false);
+            console.log(err);
             setError(err.message);
         }
     }
@@ -62,6 +66,10 @@ const LogIn = props => {
 
     return (
         <Auth>
+            {isLoading && <React.Fragment>
+                <BackDrop />
+                <Loader />
+            </React.Fragment>}
             {error && <React.Fragment>
                 <BackDrop onClose={onErrorClose} />
                 <ModalEtc title="Error Occured" message={error} onClose={onErrorClose} />

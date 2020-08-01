@@ -49,25 +49,36 @@ function App() {
     }
   }, [login]);
 
+  let route = (<Switch>
+    <Route path="/locker/:lockerId">
+      <Locker />
+    </Route>
+    <Route path="/auth/signup" exact>
+      <SidnUp />
+    </Route>
+    <Route path="/auth/login" exact>
+      <Login />
+    </Route>
+    <Route paht="/" exact>
+      <Home />
+    </Route>
+  </Switch>);
+  if (isLoggedIn === true) {
+    route = <Switch>
+      <Route path="/locker/:lockerId">
+        <Locker />
+      </Route>
+      <Route paht="/" exact>
+        <Home />
+      </Route>
+    </Switch>
+  }
   return (
     <Suspense fallback={<Loader />}>
       <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logOut: logout, userId: userId, token: token }}>
-        <BrowserRouter  basename="/" >
+        <BrowserRouter basename="/" >
           <MainNavigation />
-          <Switch>
-            <Route path="/locker/:lockerId">
-              <Locker />
-            </Route>
-            <Route path="/auth/signup" exact>
-              <SidnUp />
-            </Route>
-            <Route path="/auth/login" exact>
-              <Login />
-            </Route>
-            <Route paht="/" exact>
-              <Home />
-            </Route>
-          </Switch>
+          {route}
         </BrowserRouter>
       </AuthContext.Provider>
     </Suspense>

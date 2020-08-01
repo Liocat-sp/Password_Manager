@@ -5,6 +5,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.notOver {
+  z-index: 50;
+  position: relative;
+}
 .loader {
     box-sizing: border-box;
     border: 5px solid #f3f3f3;

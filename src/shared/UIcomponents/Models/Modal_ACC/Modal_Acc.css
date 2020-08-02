@@ -26,12 +26,13 @@
     align-items: center;
     margin-bottom: 1rem;
 }
-.InputEle {
-    margin: 0;
-}
-.Modal_Acc_content div input,
-.Modal_Acc_content div input p {
+/* .InputEle {
     width: 100%;
+    margin: 0;
+} */
+.Modal_Acc_divs div input,
+.Modal_Acc_divs input p {
+    width: 100% !important;
     margin: 0;
 }
 .Modal_Acc_Button button{

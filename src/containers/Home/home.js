@@ -17,8 +17,8 @@ function Home() {
             <section className="section_Hero">
                 <div className="Hero_title">
                     <div className="Hero_left">
-                        <h1>You Were Not<br />Born to <br />Remember Passwords.</h1>
-                        <p>That's why we help you manage your passwords.</p>
+                        <h1>You Were Not<br />Born To <br />Remember Passwords.</h1>
+                        <p>That's why we help you to manage your passwords.</p>
                         <div className="hero_buttons">
                             <Button to={isLoggedIn? "/locker/accounts":"/auth/signup"} half>SignUp</Button>
                             <Button to="/locker/accounts" half border>Try now</Button>

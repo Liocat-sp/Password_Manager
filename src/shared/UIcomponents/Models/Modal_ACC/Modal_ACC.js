@@ -97,7 +97,7 @@ function ModalACC(props) {
                 <Button half onClick={props.onClose}>Go Back</Button>
                 <Button half border onClick={onDeleteHandler}>Delete</Button>
             </div>
-        </React.Fragment> : <div className="center"><Loader notOver/></div>}
+        </React.Fragment> : isLoggedIn && <div className="center"><Loader notOver/></div>}
     </div>);
     return ReactDOM.createPortal(ModalItem, document.getElementById("Modal_Acc"));
 }

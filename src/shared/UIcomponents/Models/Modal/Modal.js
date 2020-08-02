@@ -117,6 +117,7 @@ function Modal(props) {
                 label="Website"
                 AddOns
                 onInput={onInputChange}
+                placeholder="eg. Google"
                 // onRequest={onRequestHandler}
                 validators={[VALIDATION_REQUIRE()]}
                 errorText="Please enter valid website name"
@@ -132,6 +133,7 @@ function Modal(props) {
                 label="Email"
                 AddOns
                 onInput={onInputChange}
+                placeholder="Your Email"
                 validators={[VALIDATION_EMAIL()]}
                 errorText="Please enter the correct Email."
                 type="text" />
@@ -142,6 +144,7 @@ function Modal(props) {
                 optional={true}
                 AddOns
                 isValid={true}
+                placeholder="Your Username"
                 onInput={onInputChange}
                 validators={[]}
                 type="text" />
@@ -150,6 +153,7 @@ function Modal(props) {
                 label="Password"
                 onInput={onInputChange}
                 see
+                placeholder="Your Password"
                 validators={[VALIDATION_MINLENGTH(8)]}
                 errorText="Please Enter Valid Password(Min length 8)."
                 type="password" />

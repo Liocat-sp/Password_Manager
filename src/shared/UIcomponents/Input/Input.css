@@ -22,13 +22,13 @@
 .Input__div input {
     width: 90%;
     outline: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border: none;
 }
 .Normal_input {
     width: 75%;
     outline: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 0.6rem;
     display: flex;    
     align-items: center;
